@@ -149,22 +149,22 @@ public class MainActivity2 extends AppCompatActivity implements View.OnClickList
             ID = nowData[0];
             String viewData = nowData[0] + ", " + nowData[1] + ", " + nowData[2] + ", " + nowData[3];
             AlertDialog.Builder dialog = new AlertDialog.Builder(MainActivity2.this);
-            dialog.setTitle("데이터 삭제")
-                    .setMessage("해당 데이터를 삭제 하시겠습니까?" + "\n" + viewData)
-                    .setPositiveButton("네", new DialogInterface.OnClickListener() {
+            dialog.setTitle("Delete Data")
+                    .setMessage("Do you want to delete that data?" + "\n" + viewData)
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             postFirebaseDatabase(false);
                             getFirebaseDatabase();
                             setInsertMode();
                             edit_ID.setEnabled(true);
-                            Toast.makeText(MainActivity2.this, "데이터를 삭제했습니다.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity2.this, "We delete data.", Toast.LENGTH_SHORT).show();
                         }
                     })
-                    .setNegativeButton("아니오", new DialogInterface.OnClickListener() {
+                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            Toast.makeText(MainActivity2.this, "삭제를 취소했습니다.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity2.this, "Cancel the deleting.", Toast.LENGTH_SHORT).show();
                             setInsertMode();
                             edit_ID.setEnabled(true);
                         }
@@ -245,7 +245,7 @@ public class MainActivity2 extends AppCompatActivity implements View.OnClickList
                     getFirebaseDatabase();
                     setInsertMode();
                 }else{
-                    Toast.makeText(MainActivity2.this, "이미 존재하는 ID 입니다. 다른 ID로 설정해주세요.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity2.this, "This ID exists already. Please set to other ID.", Toast.LENGTH_LONG).show();
                 }
                 edit_ID.requestFocus();
                 edit_ID.setCursorVisible(true);
