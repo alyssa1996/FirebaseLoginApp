@@ -13,7 +13,7 @@ import java.util.Map;
 
 @IgnoreExtraProperties
 public class FirebasePost {
-    public String CarLicense;
+    public String ID;
     public String name;
     public Long age;
     public String gender;
@@ -23,7 +23,7 @@ public class FirebasePost {
     }
 
     public FirebasePost(String CarLicense, String name, Long age, String gender) {
-        this.CarLicense = CarLicense;
+        this.ID = CarLicense;
         this.name = name;
         this.age = age;
         this.gender = gender;
@@ -32,7 +32,7 @@ public class FirebasePost {
     @Exclude
     public Map<String, Object> toMap() {
         HashMap<String, Object> result = new HashMap<>();
-        result.put("Car License", CarLicense);
+        result.put("Car License", ID);
         result.put("name", name);
         result.put("age", age);
         result.put("gender", gender);

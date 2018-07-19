@@ -8,7 +8,7 @@
     tools:context="com.example.jisupark.firebaseloginapp.MainActivity2">
 
     <TextView
-        android:id="@+id/text_carLicense"
+        android:id="@+id/text_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="CarLicense: "
@@ -18,13 +18,13 @@
         />
 
     <EditText
-        android:id="@+id/edit_carLicense"
+        android:id="@+id/edit_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:maxLength="10"
         android:inputType="textPersonName"
-        android:layout_toRightOf="@+id/text_carLicense"
+        android:layout_toRightOf="@+id/text_id"
         />
 
     <TextView
@@ -34,8 +34,8 @@
         android:text="NAME: "
         android:textSize="15dp"
         android:layout_marginTop="20dp"
-        android:layout_below="@+id/text_carLicense"
-        android:layout_alignLeft="@+id/text_carLicense"
+        android:layout_below="@+id/text_id"
+        android:layout_alignLeft="@+id/text_id"
         />
 
     <EditText
@@ -47,7 +47,7 @@
         android:inputType="textPersonName"
         android:layout_alignBaseline="@+id/text_name"
         android:layout_alignBottom="@+id/text_name"
-        android:layout_alignEnd="@+id/edit_carLicense"
+        android:layout_alignEnd="@+id/edit_id"
         android:layout_toEndOf="@+id/text_name" />
 
     <TextView
@@ -125,7 +125,7 @@
         android:layout_below="@+id/line1"/>
 
     <CheckBox
-        android:id="@+id/check_usercarLicense"
+        android:id="@+id/check_userID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="CarLicense"
@@ -142,7 +142,7 @@
         android:layout_height="wrap_content"
         android:text="Name"
         android:textSize="15dp"
-        android:layout_toRightOf="@+id/check_usercarLicense"
+        android:layout_toRightOf="@+id/check_userID"
         android:layout_alignBottom="@+id/text_sort"
         android:layout_marginLeft="3dp"
         android:layout_alignTop="@+id/text_sort" />
