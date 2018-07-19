@@ -42,24 +42,24 @@ public class MainActivity2 extends AppCompatActivity implements View.OnClickList
     Button btn_Update;
     Button btn_Insert;
     Button btn_Select;
-    EditText edit_ID;
+    EditText edit_CarLicense;
     EditText edit_Name;
     EditText edit_Age;
-    TextView text_ID;
+    TextView text_CarLicense;
     TextView text_Name;
     TextView text_Age;
     TextView text_Gender;
     CheckBox check_Man;
     CheckBox check_Woman;
-    CheckBox check_ID;
+    CheckBox check_CarLicense;
     CheckBox check_Name;
     CheckBox check_Age;
 
-    String ID;
+    String CarLicense;
     String name;
     long age;
     String gender = "";
-    String sort = "id";
+    String sort = "CarLiense";
 
     ArrayAdapter<String> arrayAdapter;
 
@@ -77,10 +77,10 @@ public class MainActivity2 extends AppCompatActivity implements View.OnClickList
         btn_Update.setOnClickListener(this);
         btn_Select = (Button) findViewById(R.id.btn_select);
         btn_Select.setOnClickListener(this);
-        edit_ID = (EditText) findViewById(R.id.edit_id);
+        edit_CarLicense = (EditText) findViewById(R.id.edit_carLicense);
         edit_Name = (EditText) findViewById(R.id.edit_name);
         edit_Age = (EditText) findViewById(R.id.edit_age);
-        text_ID = (TextView) findViewById(R.id.text_id);
+        text_CarLicense = (TextView) findViewById(R.id.text_carLicense);
         text_Name = (TextView) findViewById(R.id.text_name);
         text_Age = (TextView) findViewById(R.id.text_age);
         text_Gender= (TextView) findViewById(R.id.text_gender);
@@ -88,8 +88,8 @@ public class MainActivity2 extends AppCompatActivity implements View.OnClickList
         check_Man.setOnClickListener(this);
         check_Woman = (CheckBox) findViewById(R.id.check_woman);
         check_Woman.setOnClickListener(this);
-        check_ID = (CheckBox) findViewById(R.id.check_userid);
-        check_ID.setOnClickListener(this);
+        check_CarLicense = (CheckBox) findViewById(R.id.check_usercarLicense);
+        check_CarLicense.setOnClickListener(this);
         check_Name = (CheckBox) findViewById(R.id.check_name);
         check_Name.setOnClickListener(this);
         check_Age = (CheckBox) findViewById(R.id.check_age);
@@ -101,7 +101,7 @@ public class MainActivity2 extends AppCompatActivity implements View.OnClickList
         listView.setOnItemClickListener(onClickListener);
         listView.setOnItemLongClickListener(longClickListener);
 
-        check_ID.setChecked(true);
+        check_CarLicense.setChecked(true);
         getFirebaseDatabase();
 
         btn_Insert.setEnabled(true);
@@ -109,7 +109,7 @@ public class MainActivity2 extends AppCompatActivity implements View.OnClickList
     }
 
     public void setInsertMode(){
-        edit_ID.setText("");
+        edit_CarLicense.setText("");
         edit_Name.setText("");
         edit_Age.setText("");
         check_Man.setChecked(false);
@@ -125,7 +125,7 @@ public class MainActivity2 extends AppCompatActivity implements View.OnClickList
             Log.e("On Click", "Data: " + arrayData.get(position));
             String[] tempData = arrayData.get(position).split("\\s+");
             Log.e("On Click", "Split Result = " + tempData);
-            edit_ID.setText(tempData[0].trim());
+            edit_CarLicense.setText(tempData[0].trim());
             edit_Name.setText(tempData[1].trim());
             edit_Age.setText(tempData[2].trim());
             if(tempData[3].trim().equals("Man")){
@@ -135,7 +135,7 @@ public class MainActivity2 extends AppCompatActivity implements View.OnClickList
                 check_Woman.setChecked(true);
                 gender = "Woman";
             }
-            edit_ID.setEnabled(false);
+            edit_CarLicense.setEnabled(false);
             btn_Insert.setEnabled(false);
             btn_Update.setEnabled(true);
         }
@@ -146,7 +146,7 @@ public class MainActivity2 extends AppCompatActivity implements View.OnClickList
         public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
             Log.d("Long Click", "position = " + position);
             final String[] nowData = arrayData.get(position).split("\\s+");
-            ID = nowData[0];
+            CarLicense = nowData[0];
             String viewData = nowData[0] + ", " + nowData[1] + ", " + nowData[2] + ", " + nowData[3];
             AlertDialog.Builder dialog = new AlertDialog.Builder(MainActivity2.this);
             dialog.setTitle("Delete Data")
@@ -157,7 +157,7 @@ public class MainActivity2 extends AppCompatActivity implements View.OnClickList
                             postFirebaseDatabase(false);
                             getFirebaseDatabase();
                             setInsertMode();
-                            edit_ID.setEnabled(true);
+                            edit_CarLicense.setEnabled(true);
                             Toast.makeText(MainActivity2.this, "We delete data.", Toast.LENGTH_SHORT).show();
                         }
                     })
@@ -166,7 +166,7 @@ public class MainActivity2 extends AppCompatActivity implements View.OnClickList
                         public void onClick(DialogInterface dialog, int which) {
                             Toast.makeText(MainActivity2.this, "Cancel the deleting.", Toast.LENGTH_SHORT).show();
                             setInsertMode();
-                            edit_ID.setEnabled(true);
+                            edit_CarLicense.setEnabled(true);
                         }
                     })
                     .create()
@@ -176,7 +176,7 @@ public class MainActivity2 extends AppCompatActivity implements View.OnClickList
     };
 
     public boolean IsExistID(){
-        boolean IsExist = arrayIndex.contains(ID);
+        boolean IsExist = arrayIndex.contains(CarLicense);
         return IsExist;
     }
 
@@ -185,10 +185,10 @@ public class MainActivity2 extends AppCompatActivity implements View.OnClickList
         Map<String, Object> childUpdates = new HashMap<>();
         Map<String, Object> postValues = null;
         if(add){
-            FirebasePost post = new FirebasePost(ID, name, age, gender);
+            FirebasePost post = new FirebasePost(CarLicense, name, age, gender);
             postValues = post.toMap();
         }
-        childUpdates.put("/id_list/" + ID, postValues);
+        childUpdates.put("/CarLicense_list/" + CarLicense, postValues);
         mPostReference.updateChildren(childUpdates);
     }
 
@@ -202,7 +202,7 @@ public class MainActivity2 extends AppCompatActivity implements View.OnClickList
                 for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
                     String key = postSnapshot.getKey();
                     FirebasePost get = postSnapshot.getValue(FirebasePost.class);
-                    String[] info = {get.id, get.name, String.valueOf(get.age), get.gender};
+                    String[] info = {get.CarLicense, get.name, String.valueOf(get.age), get.gender};
                     String Result = setTextLength(info[0],10) + setTextLength(info[1],10) + setTextLength(info[2],10) + setTextLength(info[3],10);
                     arrayData.add(Result);
                     arrayIndex.add(key);
@@ -219,7 +219,7 @@ public class MainActivity2 extends AppCompatActivity implements View.OnClickList
                 Log.w("getFirebaseDatabase","loadPost:onCancelled", databaseError.toException());
             }
         };
-        Query sortbyAge = FirebaseDatabase.getInstance().getReference().child("id_list").orderByChild(sort);
+        Query sortbyAge = FirebaseDatabase.getInstance().getReference().child("CarLicense_list").orderByChild(sort);
         sortbyAge.addListenerForSingleValueEvent(postListener);
     }
 
@@ -237,7 +237,7 @@ public class MainActivity2 extends AppCompatActivity implements View.OnClickList
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_insert:
-                ID = edit_ID.getText().toString();
+                CarLicense = edit_CarLicense.getText().toString();
                 name = edit_Name.getText().toString();
                 age = Long.parseLong(edit_Age.getText().toString());
                 if(!IsExistID()){
@@ -245,22 +245,22 @@ public class MainActivity2 extends AppCompatActivity implements View.OnClickList
                     getFirebaseDatabase();
                     setInsertMode();
                 }else{
-                    Toast.makeText(MainActivity2.this, "This ID exists already. Please set to other ID.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity2.this, "This CarLicense exists already. Please check your email and password again.", Toast.LENGTH_LONG).show();
                 }
-                edit_ID.requestFocus();
-                edit_ID.setCursorVisible(true);
+                edit_CarLicense.requestFocus();
+                edit_CarLicense.setCursorVisible(true);
                 break;
 
             case R.id.btn_update:
-                ID = edit_ID.getText().toString();
+                CarLicense = edit_CarLicense.getText().toString();
                 name = edit_Name.getText().toString();
                 age = Long.parseLong(edit_Age.getText().toString());
                 postFirebaseDatabase(true);
                 getFirebaseDatabase();
                 setInsertMode();
-                edit_ID.setEnabled(true);
-                edit_ID.requestFocus();
-                edit_ID.setCursorVisible(true);
+                edit_CarLicense.setEnabled(true);
+                edit_CarLicense.requestFocus();
+                edit_CarLicense.setCursorVisible(true);
                 break;
 
             case R.id.btn_select:
@@ -277,20 +277,20 @@ public class MainActivity2 extends AppCompatActivity implements View.OnClickList
                 gender = "Woman";
                 break;
 
-            case R.id.check_userid:
+            case R.id.check_usercarLicense:
                 check_Name.setChecked(false);
                 check_Age.setChecked(false);
                 sort = "id";
                 break;
 
             case R.id.check_name:
-                check_ID.setChecked(false);
+                check_CarLicense.setChecked(false);
                 check_Age.setChecked(false);
                 sort = "name";
                 break;
 
             case R.id.check_age:
-                check_ID.setChecked(false);
+                check_CarLicense.setChecked(false);
                 check_Name.setChecked(false);
                 sort = "age";
                 break;

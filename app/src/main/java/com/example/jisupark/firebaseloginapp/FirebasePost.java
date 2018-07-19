@@ -13,7 +13,7 @@ import java.util.Map;
 
 @IgnoreExtraProperties
 public class FirebasePost {
-    public String id;
+    public String CarLicense;
     public String name;
     public Long age;
     public String gender;
@@ -22,8 +22,8 @@ public class FirebasePost {
         // Default constructor required for calls to DataSnapshot.getValue(FirebasePost.class)
     }
 
-    public FirebasePost(String id, String name, Long age, String gender) {
-        this.id = id;
+    public FirebasePost(String CarLicense, String name, Long age, String gender) {
+        this.CarLicense = CarLicense;
         this.name = name;
         this.age = age;
         this.gender = gender;
@@ -32,7 +32,7 @@ public class FirebasePost {
     @Exclude
     public Map<String, Object> toMap() {
         HashMap<String, Object> result = new HashMap<>();
-        result.put("id", id);
+        result.put("Car License", CarLicense);
         result.put("name", name);
         result.put("age", age);
         result.put("gender", gender);
