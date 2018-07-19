@@ -78,14 +78,6 @@ public class MainActivity extends AppCompatActivity {
             progressBar.setVisibility(View.GONE);
         }
 
-        Information_button.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                Intent intent= new Intent(getApplicationContext(), MainActivity2.class);
-                startActivity(intent);
-            }
-        });
-
         btnChangePassword.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){

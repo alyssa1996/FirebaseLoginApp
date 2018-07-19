@@ -15,18 +15,14 @@ import java.util.Map;
 public class FirebasePost {
     public String ID;
     public String name;
-    public Long age;
-    public String gender;
 
     public FirebasePost(){
         // Default constructor required for calls to DataSnapshot.getValue(FirebasePost.class)
     }
 
-    public FirebasePost(String CarLicense, String name, Long age, String gender) {
+    public FirebasePost(String CarLicense, String name) {
         this.ID = CarLicense;
         this.name = name;
-        this.age = age;
-        this.gender = gender;
     }
 
     @Exclude
@@ -34,8 +30,6 @@ public class FirebasePost {
         HashMap<String, Object> result = new HashMap<>();
         result.put("Car License", ID);
         result.put("name", name);
-        result.put("age", age);
-        result.put("gender", gender);
         return result;
     }
 }

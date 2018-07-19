@@ -6,16 +6,27 @@
     android:layout_height="match_parent"
     tools:context="com.example.jisupark.firebaseloginapp.AccountActivity.SignupActivity">
 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_gravity="center|bottom"
+        android:layout_marginBottom="20dp"
+        android:visibility="gone"/>
+
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:background="@color/colorPrimaryDark"
         android:gravity="center"
         android:orientation="vertical"
-        android:padding="@dimen/activity_horizontal_margin">
+        android:padding="@dimen/activity_horizontal_margin"
+        android:layout_below="@+id/progressBar"
+        android:layout_alignParentStart="true"
+        android:weightSum="1">
 
-        <ImageView
-            android:layout_width="@dimen/logo_w_h"
+    <ImageView
+            android:layout_width="match_parent"
             android:layout_height="@dimen/logo_w_h"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="30dp"
@@ -24,13 +35,15 @@
             tools:ignore="ContentDescription"/>
 
         <EditText
-            android:id="@+id/email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/email"
-            android:inputType="textEmailAddress"
-            android:maxLines="1"
-            android:textColor="@android:color/white" />
+                android:id="@+id/email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/email"
+                android:inputType="textEmailAddress"
+                android:maxLines="1"
+                android:textColor="@android:color/white"
+                android:gravity="center_vertical|center_horizontal"
+            android:textSize="14sp" />
 
         <EditText
             android:id="@+id/password"
@@ -42,7 +55,99 @@
             android:imeOptions="actionUnspecified"
             android:inputType="textPassword"
             android:maxLines="1"
-            android:textColor="@android:color/white" />
+            android:textColor="@android:color/white"
+            android:gravity="center_horizontal"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/text_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="NAME"
+            android:maxLines="1"
+            android:textColor="@android:color/white"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/edit_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:maxLength="10"
+            android:inputType="textPersonName"
+            android:layout_alignBaseline="@+id/text_name"
+            android:layout_alignBottom="@+id/text_name"
+            android:layout_alignEnd="@+id/edit_id"
+            android:layout_toEndOf="@+id/text_name" />
+
+        <TextView
+                android:id="@+id/text_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CarLicense"
+                android:maxLines="1"
+                android:textColor="@android:color/white"
+                android:gravity="center_vertical|center_horizontal"
+                android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/edit_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:maxLength="10"
+            android:inputType="textPersonName"
+            android:layout_toRightOf="@+id/text_id"
+            />
+
+        <TextView
+                android:id="@+id/text_sort"
+                android:layout_width="67dp"
+                android:layout_height="wrap_content"
+                android:text="Sort by "
+                android:textSize="15dp"
+                android:layout_marginTop="20dp"
+                android:layout_alignLeft="@+id/text_name" />
+
+        <CheckBox
+                android:id="@+id/check_userID"
+                android:layout_width="99dp"
+                android:layout_height="wrap_content"
+                android:text="CarLicense"
+                android:textSize="15dp"
+                android:layout_toRightOf="@+id/text_sort"
+                android:layout_alignBottom="@+id/text_sort"
+                android:layout_marginLeft="3dp"
+                android:layout_alignTop="@+id/text_sort" />
+
+        <CheckBox
+                android:id="@+id/check_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Name"
+                android:textSize="15dp"
+                android:layout_toRightOf="@+id/check_userID"
+                android:layout_alignBottom="@+id/text_sort"
+                android:layout_marginLeft="3dp"
+            android:layout_below="@+id/text_id" />
+
+        <Button
+            android:id="@+id/btn_update"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Update"
+            android:background="#AFEEEE"
+            android:layout_alignStart="@+id/btn_insert"
+            android:layout_toStartOf="@+id/check_userID" />
+
+        <Button
+            android:id="@+id/btn_insert"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="12dp"
+            android:background="@color/colorAccent"
+            android:text="Insert"
+            android:layout_below="@+id/edit_name" />
 
         <Button
             android:id="@+id/sign_up_button"
@@ -54,10 +159,10 @@
             android:text="@string/action_sign_in_short"
             android:textColor="@android:color/black"
             android:textStyle="bold"/>
-    
+
         <Button
             android:id="@+id/btn_reset_password"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dip"
             android:background="@null"
@@ -65,11 +170,9 @@
             android:textAllCaps="false"
             android:textColor="@color/colorAccent" />
 
-        <!-- Link to Login Screen -->
-
         <Button
             android:id="@+id/sign_in_button"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dip"
             android:background="@null"
@@ -78,14 +181,35 @@
             android:textColor="@color/white"
             android:textSize="15sp"/>
 
+
+    <!-- Link to Login Screen -->
+
+    <Button
+            android:id="@+id/btn_select"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#AFEEEE"
+            android:text="View"
+            android:layout_alignStart="@+id/btn_update"
+        android:layout_alignParentEnd="true"
+        android:textSize="14sp" />
+
     </LinearLayout>
 
-    <ProgressBar
-        android:id="@+id/progressBar"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_gravity="center|bottom"
-        android:layout_marginBottom="20dp"
-        android:visibility="gone"/>
+    <ScrollView
+        android:id="@+id/scroll_view"
+        android:layout_width="368dp"
+        android:layout_height="495dp"
+        android:layout_marginTop="5dp"
+        android:fillViewport="true"
+        tools:layout_editor_absoluteY="8dp"
+        tools:layout_editor_absoluteX="8dp">
+        <ListView
+            android:id="@+id/db_list_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </ListView>
+
+    </ScrollView>
 
 </RelativeLayout>
