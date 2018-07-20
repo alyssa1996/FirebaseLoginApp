@@ -59,20 +59,14 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
 
     private DatabaseReference mPostReference;
 
-    //Button btn_Update;
     Button btn_Insert;
-    //Button btn_Select;
     EditText edit_ID;
     EditText edit_Name;
     TextView text_ID;
     TextView text_Name;
-    //CheckBox check_ID;
-    //CheckBox check_Name;
-    //CheckBox check_Age;
 
     String ID;
     String name;
-    String sort = "CarLiense";
 
     ArrayAdapter<String> arrayAdapter;
 
@@ -92,21 +86,12 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
         inputPassword = (EditText) findViewById(R.id.password);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         btnResetPassword = (Button) findViewById(R.id.btn_reset_password);
-        Intent intent = getIntent();
         btn_Insert = (Button) findViewById(R.id.btn_insert);
         btn_Insert.setOnClickListener(this);
-        //btn_Update = (Button) findViewById(R.id.btn_update);
-        //btn_Update.setOnClickListener(this);
-        //btn_Select = (Button) findViewById(R.id.btn_select);
-        //btn_Select.setOnClickListener(this);
         edit_ID = (EditText) findViewById(R.id.edit_id);
         edit_Name = (EditText) findViewById(R.id.edit_name);
         text_ID = (TextView) findViewById(R.id.text_id);
         text_Name = (TextView) findViewById(R.id.text_name);
-        //check_ID = (CheckBox) findViewById(R.id.check_userID);
-        //check_ID.setOnClickListener(this);
-        //check_Name = (CheckBox) findViewById(R.id.check_name);
-        //check_Name.setOnClickListener(this);
 
         btnResetPassword.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -118,11 +103,32 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                switch (v.getId()) {
+                    case R.id.btn_insert:
+                        ID = edit_ID.getText().toString();
+                        name = edit_Name.getText().toString();
+                        if (!IsExistCarLicense()) {
+                            postFirebaseDatabase(true);
+                            setInsertMode();
+                        } else {
+                            Toast.makeText(SignupActivity.this, "This CarLicense exists already. Please check your email and password again.", Toast.LENGTH_LONG).show();
+                        }
+                        edit_ID.requestFocus();
+                        edit_ID.setCursorVisible(true);
+                        break;
+                }
                 finish();
             }
         });
 
         btnSignUp.setOnClickListener(new View.OnClickListener() {
+
+            public void setInsertMode() {
+                edit_ID.setText("");
+                edit_Name.setText("");
+                btn_Insert.setEnabled(true);
+            }
+
             @Override
             public void onClick(View v) {
                 String email = inputEmail.getText().toString().trim();
@@ -131,6 +137,7 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
                     Toast.makeText(getApplicationContext(), "Enter email address!", Toast.LENGTH_SHORT).show();
                     return;
                 }
+
 
                 if (TextUtils.isEmpty(password)) {
                     Toast.makeText(getApplicationContext(), "Enter password!", Toast.LENGTH_SHORT).show();
@@ -167,40 +174,20 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
 
         btn_Insert = (Button) findViewById(R.id.btn_insert);
         btn_Insert.setOnClickListener(this);
-        //btn_Update = (Button) findViewById(R.id.btn_update);
-        //btn_Update.setOnClickListener(this);
-        //btn_Select = (Button) findViewById(R.id.btn_select);
-        //btn_Select.setOnClickListener(this);
         edit_ID = (EditText) findViewById(R.id.edit_id);
         edit_Name = (EditText) findViewById(R.id.edit_name);
         text_ID = (TextView) findViewById(R.id.text_id);
         text_Name = (TextView) findViewById(R.id.text_name);
-        //check_ID = (CheckBox) findViewById(R.id.check_userID);
-        //check_ID.setOnClickListener(this);
-        //check_Name = (CheckBox) findViewById(R.id.check_name);
-        //check_Name.setOnClickListener(this);
-
-        //arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
-        //ListView listView = (ListView) findViewById(R.id.db_list_view);
-        //listView.setAdapter(arrayAdapter);
-        //listView.setOnItemClickListener(onClickListener);
-        //listView.setOnItemLongClickListener(longClickListener);
-
-        //check_ID.setChecked(true);
-        //getFirebaseDatabase();
-
         btn_Insert.setEnabled(true);
-        //btn_Update.setEnabled(false);
     }
 
     public void setInsertMode() {
         edit_ID.setText("");
         edit_Name.setText("");
         btn_Insert.setEnabled(true);
-        //btn_Update.setEnabled(false);
     }
 
-    private AdapterView.OnItemClickListener onClickListener = new AdapterView.OnItemClickListener() {
+    /*private AdapterView.OnItemClickListener onClickListener = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             Log.e("On Click", "position = " + position);
@@ -211,7 +198,6 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
             edit_Name.setText(tempData[1].trim());
             edit_ID.setEnabled(false);
             btn_Insert.setEnabled(false);
-            //btn_Update.setEnabled(true);
         }
     };
 
@@ -248,6 +234,7 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
             return false;
         }
     };
+*/
 
     public boolean IsExistCarLicense() {
         boolean IsExist = arrayIndex.contains(ID);
@@ -265,46 +252,9 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
         childUpdates.put("/CarLicense_list/" + ID, postValues);
         mPostReference.updateChildren(childUpdates);
     }
-
-   // public void getFirebaseDatabase() {
-     //   ValueEventListener postListener = new ValueEventListener() {
-       //     @Override
-         //   public void onDataChange(DataSnapshot dataSnapshot) {
-           //     Log.e("getFirebaseDatabase", "key: " + dataSnapshot.getChildrenCount());
-                //arrayData.clear();
-                //arrayIndex.clear();
-             //   for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-               //     String key = postSnapshot.getKey();
-                 //   FirebasePost get = postSnapshot.getValue(FirebasePost.class);
-                   // String[] info = {get.ID, get.name};
-                    //String Result = (setTextLength(info[0], 10) + setTextLength(info[1], 10));
-                    //arrayData.add(Result);
-                    //arrayIndex.add(key);
-                    //Log.d("getFirebaseDatabase", "key: " + key);
-                   // Log.d("getFirebaseDatabase", "info: " + info[0] + info[1]);
-                //}
-                //arrayAdapter.clear();
-                //arrayAdapter.addAll(arrayData);
-                //arrayAdapter.notifyDataSetChanged();
-            //}
-            //@Override
-            public void onCancelled(DatabaseError databaseError) {
-                Log.w("getFirebaseDatabase", "loadPost:onCancelled", databaseError.toException());
+    public void onCancelled(DatabaseError databaseError) {
+        Log.w("getFirebaseDatabase", "loadPost:onCancelled", databaseError.toException());
             }
-        //};
-        //Query sortbyAge = FirebaseDatabase.getInstance().getReference().child("CarLicense_list").orderByChild(sort);
-        //sortbyAge.addListenerForSingleValueEvent(postListener);
-    //}
-
-   // public String setTextLength(String text, int length) {
-     //   if (text.length() < length) {
-       //     int gap = length - text.length();
-         //   for (int i = 0; i < gap; i++) {
-           //     text = text + " ";
-           // }
-       // }
-       // return text;
-    //}
 
     @Override
     public void onClick(View v) {
@@ -314,7 +264,6 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
                 name = edit_Name.getText().toString();
                 if (!IsExistCarLicense()) {
                     postFirebaseDatabase(true);
-          //          getFirebaseDatabase();
                     setInsertMode();
                 } else {
                     Toast.makeText(SignupActivity.this, "This CarLicense exists already. Please check your email and password again.", Toast.LENGTH_LONG).show();
@@ -322,27 +271,6 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
                 edit_ID.requestFocus();
                 edit_ID.setCursorVisible(true);
                 break;
-
-            //case R.id.btn_update:
-              //  ID = edit_ID.getText().toString();
-                //name = edit_Name.getText().toString();
-                //postFirebaseDatabase(true);
-            //    getFirebaseDatabase();
-                //setInsertMode();
-                //edit_ID.setEnabled(true);
-                //edit_ID.requestFocus();
-                //edit_ID.setCursorVisible(true);
-                //break;
-
-            //case R.id.btn_select:
-              //  getFirebaseDatabase();
-              //  break;
-
-           // case R.id.check_userID:
-             //   check_Name.setChecked(false);
-               // check_Age.setChecked(false);
-               // sort = "CarLicense";
-               // break;
         }
     }
 }

@@ -98,41 +98,6 @@
             android:maxLength="10"
             android:inputType="textPersonName"
             />
-<!--
-        <TextView
-                android:id="@+id/text_sort"
-                android:layout_width="67dp"
-                android:layout_height="wrap_content"
-                android:text="Sort by "
-            android:layout_marginTop="20dp"
-            android:textSize="12sp" />
-
-        <CheckBox
-                android:id="@+id/check_userID"
-                android:layout_width="99dp"
-                android:layout_height="wrap_content"
-                android:text="CarLicense"
-            android:layout_toRightOf="@+id/text_sort"
-                android:layout_alignBottom="@+id/text_sort"
-                android:layout_marginLeft="3dp"
-                android:layout_alignTop="@+id/text_sort" />
-
-        <CheckBox
-                android:id="@+id/check_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Name"
-            android:layout_toRightOf="@+id/check_userID"
-                android:layout_alignBottom="@+id/text_sort"
-                android:layout_marginLeft="3dp" />
-
-        <Button
-            android:id="@+id/btn_update"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Update"
-            android:background="#AFEEEE"
-            android:textSize="14sp" /> -->
 
         <Button
             android:id="@+id/btn_insert"
@@ -159,15 +124,6 @@
 
 
         <!-- Link to Login Screen -->
-<!--
-    <Button
-            android:id="@+id/btn_select"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="#AFEEEE"
-            android:text="View"
-        android:layout_alignParentEnd="true"
-        android:textSize="14sp" />-->
 
         <Button
             android:id="@+id/btn_reset_password"
