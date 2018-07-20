@@ -59,16 +59,16 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
 
     private DatabaseReference mPostReference;
 
-    Button btn_Update;
+    //Button btn_Update;
     Button btn_Insert;
-    Button btn_Select;
+    //Button btn_Select;
     EditText edit_ID;
     EditText edit_Name;
     TextView text_ID;
     TextView text_Name;
-    CheckBox check_ID;
-    CheckBox check_Name;
-    CheckBox check_Age;
+    //CheckBox check_ID;
+    //CheckBox check_Name;
+    //CheckBox check_Age;
 
     String ID;
     String name;
@@ -95,18 +95,18 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
         Intent intent = getIntent();
         btn_Insert = (Button) findViewById(R.id.btn_insert);
         btn_Insert.setOnClickListener(this);
-        btn_Update = (Button) findViewById(R.id.btn_update);
-        btn_Update.setOnClickListener(this);
-        btn_Select = (Button) findViewById(R.id.btn_select);
-        btn_Select.setOnClickListener(this);
+        //btn_Update = (Button) findViewById(R.id.btn_update);
+        //btn_Update.setOnClickListener(this);
+        //btn_Select = (Button) findViewById(R.id.btn_select);
+        //btn_Select.setOnClickListener(this);
         edit_ID = (EditText) findViewById(R.id.edit_id);
         edit_Name = (EditText) findViewById(R.id.edit_name);
         text_ID = (TextView) findViewById(R.id.text_id);
         text_Name = (TextView) findViewById(R.id.text_name);
-        check_ID = (CheckBox) findViewById(R.id.check_userID);
-        check_ID.setOnClickListener(this);
-        check_Name = (CheckBox) findViewById(R.id.check_name);
-        check_Name.setOnClickListener(this);
+        //check_ID = (CheckBox) findViewById(R.id.check_userID);
+        //check_ID.setOnClickListener(this);
+        //check_Name = (CheckBox) findViewById(R.id.check_name);
+        //check_Name.setOnClickListener(this);
 
         btnResetPassword.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -167,18 +167,18 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
 
         btn_Insert = (Button) findViewById(R.id.btn_insert);
         btn_Insert.setOnClickListener(this);
-        btn_Update = (Button) findViewById(R.id.btn_update);
-        btn_Update.setOnClickListener(this);
-        btn_Select = (Button) findViewById(R.id.btn_select);
-        btn_Select.setOnClickListener(this);
+        //btn_Update = (Button) findViewById(R.id.btn_update);
+        //btn_Update.setOnClickListener(this);
+        //btn_Select = (Button) findViewById(R.id.btn_select);
+        //btn_Select.setOnClickListener(this);
         edit_ID = (EditText) findViewById(R.id.edit_id);
         edit_Name = (EditText) findViewById(R.id.edit_name);
         text_ID = (TextView) findViewById(R.id.text_id);
         text_Name = (TextView) findViewById(R.id.text_name);
-        check_ID = (CheckBox) findViewById(R.id.check_userID);
-        check_ID.setOnClickListener(this);
-        check_Name = (CheckBox) findViewById(R.id.check_name);
-        check_Name.setOnClickListener(this);
+        //check_ID = (CheckBox) findViewById(R.id.check_userID);
+        //check_ID.setOnClickListener(this);
+        //check_Name = (CheckBox) findViewById(R.id.check_name);
+        //check_Name.setOnClickListener(this);
 
         //arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
         //ListView listView = (ListView) findViewById(R.id.db_list_view);
@@ -186,18 +186,18 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
         //listView.setOnItemClickListener(onClickListener);
         //listView.setOnItemLongClickListener(longClickListener);
 
-        check_ID.setChecked(true);
+        //check_ID.setChecked(true);
         //getFirebaseDatabase();
 
         btn_Insert.setEnabled(true);
-        btn_Update.setEnabled(false);
+        //btn_Update.setEnabled(false);
     }
 
     public void setInsertMode() {
         edit_ID.setText("");
         edit_Name.setText("");
         btn_Insert.setEnabled(true);
-        btn_Update.setEnabled(false);
+        //btn_Update.setEnabled(false);
     }
 
     private AdapterView.OnItemClickListener onClickListener = new AdapterView.OnItemClickListener() {
@@ -211,7 +211,7 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
             edit_Name.setText(tempData[1].trim());
             edit_ID.setEnabled(false);
             btn_Insert.setEnabled(false);
-            btn_Update.setEnabled(true);
+            //btn_Update.setEnabled(true);
         }
     };
 
@@ -323,26 +323,26 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
                 edit_ID.setCursorVisible(true);
                 break;
 
-            case R.id.btn_update:
-                ID = edit_ID.getText().toString();
-                name = edit_Name.getText().toString();
-                postFirebaseDatabase(true);
+            //case R.id.btn_update:
+              //  ID = edit_ID.getText().toString();
+                //name = edit_Name.getText().toString();
+                //postFirebaseDatabase(true);
             //    getFirebaseDatabase();
-                setInsertMode();
-                edit_ID.setEnabled(true);
-                edit_ID.requestFocus();
-                edit_ID.setCursorVisible(true);
-                break;
+                //setInsertMode();
+                //edit_ID.setEnabled(true);
+                //edit_ID.requestFocus();
+                //edit_ID.setCursorVisible(true);
+                //break;
 
-            case R.id.btn_select:
+            //case R.id.btn_select:
               //  getFirebaseDatabase();
-                break;
+              //  break;
 
-            case R.id.check_userID:
-                check_Name.setChecked(false);
-                check_Age.setChecked(false);
-                sort = "CarLicense";
-                break;
+           // case R.id.check_userID:
+             //   check_Name.setChecked(false);
+               // check_Age.setChecked(false);
+               // sort = "CarLicense";
+               // break;
         }
     }
 }
