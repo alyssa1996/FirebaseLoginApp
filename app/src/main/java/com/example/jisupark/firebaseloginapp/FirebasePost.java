@@ -20,8 +20,8 @@ public class FirebasePost {
         // Default constructor required for calls to DataSnapshot.getValue(FirebasePost.class)
     }
 
-    public FirebasePost(String CarLicense, String name) {
-        this.ID = CarLicense;
+    public FirebasePost(String ID, String name) {
+        this.ID = ID;
         this.name = name;
     }
 

@@ -180,14 +180,14 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
         check_Name = (CheckBox) findViewById(R.id.check_name);
         check_Name.setOnClickListener(this);
 
-        arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
-        ListView listView = (ListView) findViewById(R.id.db_list_view);
-        listView.setAdapter(arrayAdapter);
-        listView.setOnItemClickListener(onClickListener);
-        listView.setOnItemLongClickListener(longClickListener);
+        //arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
+        //ListView listView = (ListView) findViewById(R.id.db_list_view);
+        //listView.setAdapter(arrayAdapter);
+        //listView.setOnItemClickListener(onClickListener);
+        //listView.setOnItemLongClickListener(longClickListener);
 
         check_ID.setChecked(true);
-        getFirebaseDatabase();
+        //getFirebaseDatabase();
 
         btn_Insert.setEnabled(true);
         btn_Update.setEnabled(false);
@@ -229,7 +229,7 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             postFirebaseDatabase(false);
-                            getFirebaseDatabase();
+                            //getFirebaseDatabase();
                             setInsertMode();
                             edit_ID.setEnabled(true);
                             Toast.makeText(SignupActivity.this, "We delete data.", Toast.LENGTH_SHORT).show();
@@ -266,46 +266,45 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
         mPostReference.updateChildren(childUpdates);
     }
 
-    public void getFirebaseDatabase() {
-        ValueEventListener postListener = new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                Log.e("getFirebaseDatabase", "key: " + dataSnapshot.getChildrenCount());
-                arrayData.clear();
-                arrayIndex.clear();
-                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-                    String key = postSnapshot.getKey();
-                    FirebasePost get = postSnapshot.getValue(FirebasePost.class);
-                    String[] info = {get.ID, get.name};
-                    String Result = setTextLength(info[0], 10) + setTextLength(info[1], 10);
-                    arrayData.add(Result);
-                    arrayIndex.add(key);
-                    Log.d("getFirebaseDatabase", "key: " + key);
-                    Log.d("getFirebaseDatabase", "info: " + info[0] + info[1]);
-                }
-                arrayAdapter.clear();
-                arrayAdapter.addAll(arrayData);
-                arrayAdapter.notifyDataSetChanged();
-            }
-
-            @Override
+   // public void getFirebaseDatabase() {
+     //   ValueEventListener postListener = new ValueEventListener() {
+       //     @Override
+         //   public void onDataChange(DataSnapshot dataSnapshot) {
+           //     Log.e("getFirebaseDatabase", "key: " + dataSnapshot.getChildrenCount());
+                //arrayData.clear();
+                //arrayIndex.clear();
+             //   for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+               //     String key = postSnapshot.getKey();
+                 //   FirebasePost get = postSnapshot.getValue(FirebasePost.class);
+                   // String[] info = {get.ID, get.name};
+                    //String Result = (setTextLength(info[0], 10) + setTextLength(info[1], 10));
+                    //arrayData.add(Result);
+                    //arrayIndex.add(key);
+                    //Log.d("getFirebaseDatabase", "key: " + key);
+                   // Log.d("getFirebaseDatabase", "info: " + info[0] + info[1]);
+                //}
+                //arrayAdapter.clear();
+                //arrayAdapter.addAll(arrayData);
+                //arrayAdapter.notifyDataSetChanged();
+            //}
+            //@Override
             public void onCancelled(DatabaseError databaseError) {
                 Log.w("getFirebaseDatabase", "loadPost:onCancelled", databaseError.toException());
             }
-        };
-        Query sortbyAge = FirebaseDatabase.getInstance().getReference().child("CarLicense_list").orderByChild(sort);
-        sortbyAge.addListenerForSingleValueEvent(postListener);
-    }
+        //};
+        //Query sortbyAge = FirebaseDatabase.getInstance().getReference().child("CarLicense_list").orderByChild(sort);
+        //sortbyAge.addListenerForSingleValueEvent(postListener);
+    //}
 
-    public String setTextLength(String text, int length) {
-        if (text.length() < length) {
-            int gap = length - text.length();
-            for (int i = 0; i < gap; i++) {
-                text = text + " ";
-            }
-        }
-        return text;
-    }
+   // public String setTextLength(String text, int length) {
+     //   if (text.length() < length) {
+       //     int gap = length - text.length();
+         //   for (int i = 0; i < gap; i++) {
+           //     text = text + " ";
+           // }
+       // }
+       // return text;
+    //}
 
     @Override
     public void onClick(View v) {
@@ -315,7 +314,7 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
                 name = edit_Name.getText().toString();
                 if (!IsExistCarLicense()) {
                     postFirebaseDatabase(true);
-                    getFirebaseDatabase();
+          //          getFirebaseDatabase();
                     setInsertMode();
                 } else {
                     Toast.makeText(SignupActivity.this, "This CarLicense exists already. Please check your email and password again.", Toast.LENGTH_LONG).show();
@@ -328,7 +327,7 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
                 ID = edit_ID.getText().toString();
                 name = edit_Name.getText().toString();
                 postFirebaseDatabase(true);
-                getFirebaseDatabase();
+            //    getFirebaseDatabase();
                 setInsertMode();
                 edit_ID.setEnabled(true);
                 edit_ID.requestFocus();
@@ -336,7 +335,7 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
                 break;
 
             case R.id.btn_select:
-                getFirebaseDatabase();
+              //  getFirebaseDatabase();
                 break;
 
             case R.id.check_userID:

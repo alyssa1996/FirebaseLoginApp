@@ -82,7 +82,6 @@
         android:textStyle="bold"
         tools:layout_editor_absoluteY="259dp"
         tools:layout_editor_absoluteX="199dp"
-        android:layout_above="@+id/Information_button"
         android:layout_alignStart="@+id/changePass"/>
 
     <Button
@@ -135,15 +134,4 @@
         android:textStyle="bold|italic"
         android:textSize="30sp" />
 
-    <Button
-        android:id="@+id/Information_button"
-        style="?android:textAppearanceSmall"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:text="Register Information"
-        android:textStyle="bold"
-        tools:layout_editor_absoluteX="42dp"
-        tools:layout_editor_absoluteY="312dp"
-        android:layout_above="@+id/change_password_button"
-        android:layout_alignStart="@+id/change_password_button" />
 </RelativeLayout>

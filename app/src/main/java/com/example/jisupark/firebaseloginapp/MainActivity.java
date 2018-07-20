@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
         changePassword.setVisibility(View.GONE);
         remove.setVisibility(View.GONE);
         progressBar=(ProgressBar) findViewById(R.id.progressBar);
-        Button Information_button = (Button) findViewById(R.id.Information_button);
+        //Button Information_button = (Button) findViewById(R.id.Information_button);
 
         if(progressBar!=null){
             progressBar.setVisibility(View.GONE);
