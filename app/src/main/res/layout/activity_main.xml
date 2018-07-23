@@ -134,4 +134,16 @@
         android:textStyle="bold|italic"
         android:textSize="30sp" />
 
+    <Button
+        style="?android:textAppearanceSmall"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="Connect to server"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="42dp"
+        tools:layout_editor_absoluteY="312dp"
+        android:id="@+id/Connect_server_button"
+        android:layout_above="@+id/change_password_button"
+        android:layout_alignStart="@+id/change_password_button" />
+
 </RelativeLayout>

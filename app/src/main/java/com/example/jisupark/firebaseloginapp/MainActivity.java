@@ -24,7 +24,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button btnChangePassword, btnRemoveUser,changePassword, remove,signOut;
+    private Button btnChangePassword, btnRemoveUser,changePassword, remove,signOut, ConnectserverButton;
     private TextView email;
     private EditText oldEmail,password,newPassword;
     private ProgressBar progressBar;
@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
         btnChangePassword=(Button) findViewById(R.id.change_password_button);
         btnRemoveUser=(Button) findViewById(R.id.remove_user_button);
         changePassword = (Button) findViewById(R.id.changePass);
+        ConnectserverButton=(Button) findViewById(R.id.Connect_server_button);
 
         remove=(Button) findViewById(R.id.remove);
         signOut=(Button) findViewById(R.id.sign_out);
@@ -77,6 +78,14 @@ public class MainActivity extends AppCompatActivity {
         if(progressBar!=null){
             progressBar.setVisibility(View.GONE);
         }
+
+        ConnectserverButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent intent= new Intent(getApplicationContext(), SocketActivity.class);
+                startActivity(intent);
+            }
+        }); // main 화면에서 connect_server_button 누르면 server 화면으로 넘어가게 하기 위한 코드
 
         btnChangePassword.setOnClickListener(new View.OnClickListener(){
             @Override
