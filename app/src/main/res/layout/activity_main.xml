@@ -72,19 +72,6 @@
         tools:layout_editor_absoluteX="0dp"/>
 
     <Button
-        android:id="@+id/remove"
-        style="?android:textAppearanceSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimaryDark"
-        android:text="@string/btn_remove"
-        android:textColor="@android:color/white"
-        android:textStyle="bold"
-        tools:layout_editor_absoluteY="259dp"
-        tools:layout_editor_absoluteX="199dp"
-        android:layout_alignStart="@+id/changePass"/>
-
-    <Button
         style="?android:textAppearanceSmall"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
@@ -122,18 +109,6 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"/>
 
-    <TextView
-        android:hint="Email ID"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/progressBar"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="52dp"
-        android:id="@+id/useremail"
-        android:gravity="center"
-        android:textStyle="bold|italic"
-        android:textSize="30sp" />
-
     <Button
         style="?android:textAppearanceSmall"
         android:layout_width="300dp"
@@ -145,5 +120,32 @@
         android:id="@+id/Connect_server_button"
         android:layout_above="@+id/change_password_button"
         android:layout_alignStart="@+id/change_password_button" />
+
+    <Button
+        android:id="@+id/remove"
+        style="?android:textAppearanceSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark"
+        android:text="@string/btn_remove"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteY="259dp"
+        tools:layout_editor_absoluteX="199dp"
+        android:layout_below="@+id/useremail"
+        android:layout_alignStart="@+id/changePass"
+        android:layout_marginTop="61dp" />
+
+    <TextView
+        android:hint="Email ID"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/useremail"
+        android:gravity="center"
+        android:textStyle="bold|italic"
+        android:textSize="30sp"
+        android:layout_marginTop="58dp"
+        android:layout_below="@+id/progressBar"
+        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>

@@ -38,7 +38,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class SignupActivity extends AppCompatActivity implements View.OnClickListener{
+public class SignupActivity extends AppCompatActivity{
 
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -73,6 +73,27 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
     static ArrayList<String> arrayIndex = new ArrayList<String>();
     static ArrayList<String> arrayData = new ArrayList<String>();
 
+    public void setInsertMode() {
+        edit_ID.setText("");
+        edit_Name.setText("");
+        btnSignUp.setEnabled(true);
+    }
+
+    public void postFirebaseDatabase(boolean add) {
+        mPostReference = FirebaseDatabase.getInstance().getReference();
+        Map<String, Object> childUpdates = new HashMap<>();
+        Map<String, Object> postValues = null;
+        if (add) {
+            FirebasePost post = new FirebasePost(ID, name);
+            postValues = post.toMap();
+        }
+        childUpdates.put("/CarLicense_list/" + ID, postValues);
+        mPostReference.updateChildren(childUpdates);
+    }
+    public void onCancelled(DatabaseError databaseError) {
+        Log.w("getFirebaseDatabase", "loadPost:onCancelled", databaseError.toException());
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,11 +108,18 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         btnResetPassword = (Button) findViewById(R.id.btn_reset_password);
         btn_Insert = (Button) findViewById(R.id.btn_insert);
-        btn_Insert.setOnClickListener(this);
+        //btn_Insert.setOnClickListener(this);
         edit_ID = (EditText) findViewById(R.id.edit_id);
         edit_Name = (EditText) findViewById(R.id.edit_name);
         text_ID = (TextView) findViewById(R.id.text_id);
         text_Name = (TextView) findViewById(R.id.text_name);
+        //btn_Insert = (Button) findViewById(R.id.btn_insert);
+        //btn_Insert.setOnClickListener(this);
+        //edit_ID = (EditText) findViewById(R.id.edit_id);
+        //edit_Name = (EditText) findViewById(R.id.edit_name);
+        //text_ID = (TextView) findViewById(R.id.text_id);
+        //text_Name = (TextView) findViewById(R.id.text_name);
+        btnSignUp.setEnabled(true);
 
         btnResetPassword.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,7 +132,7 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
             @Override
             public void onClick(View v) {
                 switch (v.getId()) {
-                    case R.id.btn_insert:
+                    case R.id.btn_signup:
                         ID = edit_ID.getText().toString();
                         name = edit_Name.getText().toString();
                         if (!IsExistCarLicense()) {
@@ -123,16 +151,13 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
 
         btnSignUp.setOnClickListener(new View.OnClickListener() {
 
-            public void setInsertMode() {
-                edit_ID.setText("");
-                edit_Name.setText("");
-                btn_Insert.setEnabled(true);
-            }
-
             @Override
             public void onClick(View v) {
                 String email = inputEmail.getText().toString().trim();
                 String password = inputPassword.getText().toString().trim();
+                name = edit_Name.getText().toString().trim();
+                ID = edit_ID.getText().toString().trim();
+
                 if (TextUtils.isEmpty(email)) {
                     Toast.makeText(getApplicationContext(), "Enter email address!", Toast.LENGTH_SHORT).show();
                     return;
@@ -148,6 +173,15 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
                     Toast.makeText(getApplicationContext(), "Password too short, enter minimum 6 characters!", Toast.LENGTH_SHORT).show();
                     return;
                 }
+
+                if (!IsExistCarLicense()) {
+                            postFirebaseDatabase(true);
+                            setInsertMode();
+                        } else {
+                            Toast.makeText(SignupActivity.this, "This CarLicense exists already. Please check your email and password again.", Toast.LENGTH_LONG).show();
+                        }
+                        edit_ID.requestFocus();
+                        edit_ID.setCursorVisible(true);
 
                 progressBar.setVisibility(View.VISIBLE);
                 //CREATE USER
@@ -171,20 +205,6 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
                         });
             }
         });
-
-        btn_Insert = (Button) findViewById(R.id.btn_insert);
-        btn_Insert.setOnClickListener(this);
-        edit_ID = (EditText) findViewById(R.id.edit_id);
-        edit_Name = (EditText) findViewById(R.id.edit_name);
-        text_ID = (TextView) findViewById(R.id.text_id);
-        text_Name = (TextView) findViewById(R.id.text_name);
-        btn_Insert.setEnabled(true);
-    }
-
-    public void setInsertMode() {
-        edit_ID.setText("");
-        edit_Name.setText("");
-        btn_Insert.setEnabled(true);
     }
 
     /*private AdapterView.OnItemClickListener onClickListener = new AdapterView.OnItemClickListener() {
@@ -235,42 +255,8 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
         }
     };
 */
-
     public boolean IsExistCarLicense() {
         boolean IsExist = arrayIndex.contains(ID);
         return IsExist;
-    }
-
-    public void postFirebaseDatabase(boolean add) {
-        mPostReference = FirebaseDatabase.getInstance().getReference();
-        Map<String, Object> childUpdates = new HashMap<>();
-        Map<String, Object> postValues = null;
-        if (add) {
-            FirebasePost post = new FirebasePost(ID, name);
-            postValues = post.toMap();
-        }
-        childUpdates.put("/CarLicense_list/" + ID, postValues);
-        mPostReference.updateChildren(childUpdates);
-    }
-    public void onCancelled(DatabaseError databaseError) {
-        Log.w("getFirebaseDatabase", "loadPost:onCancelled", databaseError.toException());
-            }
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.btn_insert:
-                ID = edit_ID.getText().toString();
-                name = edit_Name.getText().toString();
-                if (!IsExistCarLicense()) {
-                    postFirebaseDatabase(true);
-                    setInsertMode();
-                } else {
-                    Toast.makeText(SignupActivity.this, "This CarLicense exists already. Please check your email and password again.", Toast.LENGTH_LONG).show();
-                }
-                edit_ID.requestFocus();
-                edit_ID.setCursorVisible(true);
-                break;
-        }
     }
 }
