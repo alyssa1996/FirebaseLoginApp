@@ -14,13 +14,15 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import static android.graphics.Color.rgb;
+
 /**
  * Created by JisuPark on 2018-07-25.
  */
 
 public class ParkingLotActivity extends AppCompatActivity{
     Button[] carButton = new Button[6];
-    public static final String TAG = MainActivity.class.getSimpleName();
+    public static final String TAG = ParkingLotActivity.class.getSimpleName();
 
     void check() {
 
@@ -40,11 +42,11 @@ public class ParkingLotActivity extends AppCompatActivity{
                     value = postSnapshot.getValue(String.class);
                     Log.d(TAG, "this is " + i + "th" + value);
                     if (value.equals("0")) {
-                        carButton[i].setBackgroundColor(Color.GREEN);
+                        carButton[i].setBackgroundColor(rgb(38, 174, 144));
 
                     } else {
 
-                        carButton[i].setBackgroundColor(Color.RED);
+                        carButton[i].setBackgroundColor(rgb(255, 104, 97));
                     }
                     i++;
                 }
@@ -86,7 +88,7 @@ public class ParkingLotActivity extends AppCompatActivity{
 
         carButton[0].setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                carButton[0].setBackgroundColor(Color.RED);
+                carButton[0].setBackgroundColor(rgb(255, 104, 97));
                 Toast.makeText(getApplicationContext(), "this is button 1", Toast.LENGTH_SHORT).show();
             }
         });
@@ -95,7 +97,7 @@ public class ParkingLotActivity extends AppCompatActivity{
         carButton[1].setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
-                carButton[1].setBackgroundColor(Color.RED);
+                carButton[1].setBackgroundColor(rgb(255, 104, 97));
                 Toast.makeText(getApplicationContext(), "this is button 2", Toast.LENGTH_SHORT).show();
 
             }
@@ -114,7 +116,7 @@ public class ParkingLotActivity extends AppCompatActivity{
         carButton[3].setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
-                carButton[3].setBackgroundColor(Color.RED);
+                carButton[3].setBackgroundColor(rgb(255, 104, 97));
                 Toast.makeText(getApplicationContext(), "this is button 4", Toast.LENGTH_SHORT).show();
             }
         });
@@ -125,7 +127,7 @@ public class ParkingLotActivity extends AppCompatActivity{
             public void onClick(View v) {
 
 
-                carButton[4].setBackgroundColor(Color.RED);
+                carButton[4].setBackgroundColor(rgb(255, 104, 97));
                 Toast.makeText(getApplicationContext(), "this is button 5", Toast.LENGTH_SHORT).show();
             }
         });
@@ -135,7 +137,7 @@ public class ParkingLotActivity extends AppCompatActivity{
         carButton[5].setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
-                carButton[5].setBackgroundColor(Color.RED);
+                carButton[5].setBackgroundColor(rgb(255, 104, 97));
                 Toast.makeText(getApplicationContext(), "this is button 6", Toast.LENGTH_SHORT).show();
             }
         });
