@@ -59,7 +59,6 @@ public class SignupActivity extends AppCompatActivity{
 
     private DatabaseReference mPostReference;
 
-    Button btn_Insert;
     EditText edit_ID;
     EditText edit_Name;
     TextView text_ID;
@@ -90,9 +89,6 @@ public class SignupActivity extends AppCompatActivity{
         childUpdates.put("/CarLicense_list/" + ID, postValues);
         mPostReference.updateChildren(childUpdates);
     }
-    public void onCancelled(DatabaseError databaseError) {
-        Log.w("getFirebaseDatabase", "loadPost:onCancelled", databaseError.toException());
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,18 +103,10 @@ public class SignupActivity extends AppCompatActivity{
         inputPassword = (EditText) findViewById(R.id.password);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         btnResetPassword = (Button) findViewById(R.id.btn_reset_password);
-        btn_Insert = (Button) findViewById(R.id.btn_insert);
-        //btn_Insert.setOnClickListener(this);
         edit_ID = (EditText) findViewById(R.id.edit_id);
         edit_Name = (EditText) findViewById(R.id.edit_name);
         text_ID = (TextView) findViewById(R.id.text_id);
         text_Name = (TextView) findViewById(R.id.text_name);
-        //btn_Insert = (Button) findViewById(R.id.btn_insert);
-        //btn_Insert.setOnClickListener(this);
-        //edit_ID = (EditText) findViewById(R.id.edit_id);
-        //edit_Name = (EditText) findViewById(R.id.edit_name);
-        //text_ID = (TextView) findViewById(R.id.text_id);
-        //text_Name = (TextView) findViewById(R.id.text_name);
         btnSignUp.setEnabled(true);
 
         btnResetPassword.setOnClickListener(new View.OnClickListener() {
@@ -207,54 +195,6 @@ public class SignupActivity extends AppCompatActivity{
         });
     }
 
-    /*private AdapterView.OnItemClickListener onClickListener = new AdapterView.OnItemClickListener() {
-        @Override
-        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            Log.e("On Click", "position = " + position);
-            Log.e("On Click", "Data: " + arrayData.get(position));
-            String[] tempData = arrayData.get(position).split("\\s+");
-            Log.e("On Click", "Split Result = " + tempData);
-            edit_ID.setText(tempData[0].trim());
-            edit_Name.setText(tempData[1].trim());
-            edit_ID.setEnabled(false);
-            btn_Insert.setEnabled(false);
-        }
-    };
-
-    private AdapterView.OnItemLongClickListener longClickListener = new AdapterView.OnItemLongClickListener() {
-        @Override
-        public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-            Log.d("Long Click", "position = " + position);
-            final String[] nowData = arrayData.get(position).split("\\s+");
-            ID = nowData[0];
-            String viewData = nowData[0] + ", " + nowData[1] + ", " + nowData[2] + ", " + nowData[3];
-            AlertDialog.Builder dialog = new AlertDialog.Builder(SignupActivity.this);
-            dialog.setTitle("Delete Data")
-                    .setMessage("Do you want to delete that data?" + "\n" + viewData)
-                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            postFirebaseDatabase(false);
-                            //getFirebaseDatabase();
-                            setInsertMode();
-                            edit_ID.setEnabled(true);
-                            Toast.makeText(SignupActivity.this, "We delete data.", Toast.LENGTH_SHORT).show();
-                        }
-                    })
-                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            Toast.makeText(SignupActivity.this, "Cancel the deleting.", Toast.LENGTH_SHORT).show();
-                            setInsertMode();
-                            edit_ID.setEnabled(true);
-                        }
-                    })
-                    .create()
-                    .show();
-            return false;
-        }
-    };
-*/
     public boolean IsExistCarLicense() {
         boolean IsExist = arrayIndex.contains(ID);
         return IsExist;

@@ -100,17 +100,6 @@
             />
 
         <Button
-            android:id="@+id/btn_insert"
-            android:layout_width="88dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="12dp"
-            android:background="@color/colorAccent"
-            android:text="Insert"
-            android:textSize="14sp"
-            android:elevation="0dp"
-            style="@android:style/Widget.Button.Inset" />
-
-        <Button
             android:id="@+id/sign_up_button"
             style="@android:style/Widget.Button.Inset"
             android:layout_width="151dp"
