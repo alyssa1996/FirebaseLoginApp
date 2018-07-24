@@ -2,6 +2,7 @@ package com.example.jisupark.firebaseloginapp;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.annotation.IdRes;
 import android.support.annotation.MainThread;
 import android.support.annotation.NonNull;
@@ -16,6 +17,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.graphics.drawable.Drawable;
 
 import com.example.jisupark.firebaseloginapp.AccountActivity.LoginActivity;
 import com.example.jisupark.firebaseloginapp.AccountActivity.SignupActivity;
@@ -23,10 +25,15 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button btnChangePassword, btnRemoveUser,changePassword, remove,signOut, ConnectserverButton;
+    private Button btnChangePassword, btnRemoveUser,changePassword, remove,signOut, ConnectserverButton, ParkingLotButton;
     private TextView email;
     private EditText oldEmail,password,newPassword;
     private ProgressBar progressBar;
@@ -62,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
         btnRemoveUser=(Button) findViewById(R.id.remove_user_button);
         changePassword = (Button) findViewById(R.id.changePass);
         ConnectserverButton=(Button) findViewById(R.id.Connect_server_button);
+        ParkingLotButton = (Button) findViewById(R.id.Parking_Lot_Button);
 
         remove=(Button) findViewById(R.id.remove);
         signOut=(Button) findViewById(R.id.sign_out);
@@ -88,6 +96,14 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         }); // main 화면에서 connect_server_button 누르면 server 화면으로 넘어가게 하기 위한 코드
+
+        ParkingLotButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent intent= new Intent(getApplicationContext(), ParkingLotActivity.class);
+                startActivity(intent);
+            }
+        });
 
         btnChangePassword.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -203,10 +219,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onStop(){
+    public void onStop() {
         super.onStop();
-        if(authListener !=null){
+        if (authListener != null) {
             auth.removeAuthStateListener(authListener);
         }
     }
+
 }

@@ -113,11 +113,11 @@
         style="?android:textAppearanceSmall"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:text="Connect to server"
+        android:text="Check the Parking Lot"
         android:textStyle="bold"
         tools:layout_editor_absoluteX="42dp"
         tools:layout_editor_absoluteY="312dp"
-        android:id="@+id/Connect_server_button"
+        android:id="@+id/Parking_Lot_Button"
         android:layout_above="@+id/change_password_button"
         android:layout_alignStart="@+id/change_password_button" />
 
@@ -147,5 +147,17 @@
         android:layout_marginTop="58dp"
         android:layout_below="@+id/progressBar"
         android:layout_alignParentEnd="true" />
+
+    <Button
+        style="?android:textAppearanceSmall"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="Connect to server"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="42dp"
+        tools:layout_editor_absoluteY="312dp"
+        android:id="@+id/Connect_server_button"
+        android:layout_above="@+id/Parking_Lot_Button"
+        android:layout_alignStart="@+id/Parking_Lot_Button" />
 
 </RelativeLayout>
