@@ -1,13 +1,32 @@
 package com.example.jisupark.firebaseloginapp;
 
+<<<<<<< HEAD
 import android.graphics.Color;
 import android.os.Bundle;
+=======
+<<<<<<< HEAD
+import android.graphics.Color;
+import android.os.Bundle;
+=======
+import android.content.Intent;
+import android.graphics.Color;
+import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
+>>>>>>> origin/popup
+>>>>>>> parent of e27e36f... resolved
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+import com.example.jisupark.firebaseloginapp.AccountActivity.LoginActivity;
+>>>>>>> origin/popup
+>>>>>>> parent of e27e36f... resolved
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -88,8 +107,19 @@ public class ParkingLotActivity extends AppCompatActivity{
 
         carButton[0].setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+<<<<<<< HEAD
                 carButton[0].setBackgroundColor(rgb(255, 104, 97));
                 Toast.makeText(getApplicationContext(), "this is button 1", Toast.LENGTH_SHORT).show();
+=======
+<<<<<<< HEAD
+                carButton[0].setBackgroundColor(rgb(255, 104, 97));
+                Toast.makeText(getApplicationContext(), "this is button 1", Toast.LENGTH_SHORT).show();
+=======
+                startActivity(new Intent(ParkingLotActivity.this, Pop.class) );
+
+
+>>>>>>> origin/popup
+>>>>>>> parent of e27e36f... resolved
             }
         });
         carButton[1] = (Button) findViewById(R.id.car_2);

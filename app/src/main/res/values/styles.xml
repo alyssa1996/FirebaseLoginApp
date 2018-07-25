@@ -16,5 +16,17 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+
+=======
+    <style name="AppTheme.CustomTheme">
+        <item name="android:windowIsTranslucent"> true </item>
+        <item name="android:windowCloseOnTouchOutside"> true </item>
+
+    </style>
+>>>>>>> origin/popup
+>>>>>>> parent of e27e36f... resolved
 </resources>
