@@ -1,24 +1,6 @@
-<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="VcsDirectoryMappings">
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-    <mapping directory="" vcs="Git" />
-=======
->>>>>>> origin/popup
->>>>>>> e27e36f25dea5cbb9e392c8594d0a83fa0428be3
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
   </component>
 </project>
-||||||| merged common ancestors
-=======
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="VcsDirectoryMappings">
-    <mapping directory="" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$" vcs="Git" />
-  </component>
-</project>
->>>>>>> 4c9ef22bc6e051c1e8a444dae1c7671deb136597
