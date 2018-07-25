@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+<<<<<<< HEAD
       <module fileurl="file://$PROJECT_DIR$/FirebaseLoginApp.iml" filepath="$PROJECT_DIR$/FirebaseLoginApp.iml" />
+=======
+      <module fileurl="file://$PROJECT_DIR$/FirebaseLoginApp-master 2.iml" filepath="$PROJECT_DIR$/FirebaseLoginApp-master 2.iml" />
+>>>>>>> origin/popup
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
